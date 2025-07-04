@@ -2,83 +2,127 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Your Portfolio</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Kotala Kishan Reddy</title>
+
+  <!-- Fonts similar to The Verge -->
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=IBM+Plex+Sans&display=swap" rel="stylesheet">
+
   <style>
+    :root {
+      --verge-pink: #ff003c;
+      --verge-blue: #00cfff;
+      --bg-dark: #0e0e0e;
+      --text-light: #f2f2f2;
+      --text-muted: #aaaaaa;
+    }
+
     body {
-      font-family: Arial, sans-serif;
       margin: 0;
-      padding: 0;
-      background: #f4f4f4;
-      color: #333;
-    }
-    header {
-      background: #1e1e2f;
-      color: white;
-      padding: 2rem;
+      font-family: 'IBM Plex Sans', sans-serif;
+      background-color: var(--bg-dark);
+      color: var(--text-light);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
       text-align: center;
+      padding: 2rem;
     }
-    section {
-      max-width: 800px;
-      margin: 2rem auto;
-      padding: 1rem;
-      background: white;
-      border-radius: 8px;
+
+    .container {
+      max-width: 700px;
     }
+
+    h1 {
+      font-family: 'Anton', sans-serif;
+      font-size: 3rem;
+      color: var(--verge-pink);
+      margin-bottom: 0.5rem;
+    }
+
     h2 {
-      color: #1e1e2f;
+      font-size: 1.2rem;
+      font-weight: normal;
+      color: var(--text-muted);
+      margin-bottom: 2rem;
     }
-    ul {
-      list-style-type: none;
-      padding: 0;
-    }
-    li {
-      padding: 0.5rem 0;
-    }
-    a {
-      color: #0077cc;
+
+    .social-icons a {
+      margin: 0 0.5rem;
+      display: inline-block;
+      color: var(--verge-blue);
+      font-size: 1.4rem;
       text-decoration: none;
+      position: relative;
     }
-    a:hover {
-      text-decoration: underline;
+
+    .social-icons a::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: -4px;
+      width: 100%;
+      height: 2px;
+      background-color: var(--verge-blue);
+      transform: scaleX(0);
+      transition: transform 0.3s ease;
+      transform-origin: right;
+    }
+
+    .social-icons a:hover::after {
+      transform: scaleX(1);
+      transform-origin: left;
+    }
+
+    p {
+      font-size: 1rem;
+      line-height: 1.5;
+      color: var(--text-muted);
+    }
+
+    .project-links {
+      margin-top: 2rem;
+    }
+
+    .project-links a {
+      display: inline-block;
+      margin: 0.5rem 1rem;
+      padding: 0.6rem 1.2rem;
+      border: 2px solid var(--verge-pink);
+      border-radius: 25px;
+      text-decoration: none;
+      font-weight: bold;
+      color: var(--verge-pink);
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    .project-links a:hover {
+      background-color: var(--verge-pink);
+      color: #000;
     }
   </style>
 </head>
 <body>
-  <header>
-    <h1>Your Name</h1>
-    <p>17-year-old Student | Aspiring Prompt Engineer | AI & CS Enthusiast</p>
-  </header>
+  <div class="container">
+    <h1>KOTALA KISHAN REDDY</h1>
+    <h2>Prompt Engineer • AI Enthusiast • Automation Builder</h2>
 
-  <section>
-    <h2>About Me</h2>
     <p>
-      I'm a 17-year-old student with a strong foundation in AI and Computer Science. I specialize in prompt engineering and enjoy creating solutions using AI tools like GPT-4.
+      Building tools and solutions with GPT-4, Python and automation platforms. <br>
+      Exploring AI's limits—prompt by prompt.
     </p>
-  </section>
 
-  <section>
-    <h2>My Work</h2>
-    <ul>
-      <li><a href="https://github.com/yourusername/project1" target="_blank">Project 1: Smart Email Generator</a></li>
-      <li><a href="https://github.com/yourusername/project2" target="_blank">Project 2: Study Assistant Bot</a></li>
-      <li><a href="https://github.com/yourusername" target="_blank">View My GitHub Profile</a></li>
-    </ul>
-  </section>
+    <div class="social-icons">
+      <a href="https://github.com/KotalaKishanReddy9" target="_blank">GitHub</a>
+      <a href="mailto:kotalakishanreddy@gmail.com">Email</a>
+      <a href="https://linkedin.com/in/yourprofile" target="_blank">LinkedIn</a>
+    </div>
 
-  <section>
-    <h2>Certifications</h2>
-    <ul>
-      <li>DeepLearning.AI - Prompt Engineering for Developers</li>
-      <li>Google AI - Machine Learning Crash Course</li>
-      <li>Microsoft Learn - Introduction to AI</li>
-    </ul>
-  </section>
-
-  <section>
-    <h2>Contact</h2>
-    <p>Email: yourname@email.com</p>
-    <p>LinkedIn: <a href="https://www.linkedin.com/in/yourprofile" target="_blank">linkedin.com/in/yourprofile</a></p>
-  </section>
+    <div class="project-links">
+      <a href="#">Portfolio</a>
+      <a href="#">Automation Tools</a>
+    </div>
+  </div>
 </body>
 </html>
