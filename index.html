@@ -2,127 +2,182 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Kotala Kishan Reddy</title>
-
-  <!-- Fonts similar to The Verge -->
-  <link href="https://fonts.googleapis.com/css2?family=Anton&family=IBM+Plex+Sans&display=swap" rel="stylesheet">
-
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Retro Kernel Portfolio</title>
   <style>
-    :root {
-      --verge-pink: #ff003c;
-      --verge-blue: #00cfff;
-      --bg-dark: #0e0e0e;
-      --text-light: #f2f2f2;
-      --text-muted: #aaaaaa;
+    @import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
     }
 
     body {
-      margin: 0;
-      font-family: 'IBM Plex Sans', sans-serif;
-      background-color: var(--bg-dark);
-      color: var(--text-light);
+      background-color: #0d0d0d;
+      color: #39ff14;
+      font-family: 'VT323', monospace;
+      height: 100vh;
       display: flex;
-      justify-content: center;
       align-items: center;
-      min-height: 100vh;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .intro {
+      font-size: 2.5rem;
+      cursor: pointer;
       text-align: center;
-      padding: 2rem;
+      color: #39ff14;
+      animation: floatText 3s ease-in-out infinite alternate, glowText 2s ease-in-out infinite alternate;
     }
 
-    .container {
-      max-width: 700px;
+    @keyframes floatText {
+      from { transform: translateY(0); }
+      to { transform: translateY(-10px); }
     }
 
-    h1 {
-      font-family: 'Anton', sans-serif;
-      font-size: 3rem;
-      color: var(--verge-pink);
-      margin-bottom: 0.5rem;
+    @keyframes glowText {
+      from { text-shadow: 0 0 5px #39ff14; }
+      to { text-shadow: 0 0 15px #39ff14; }
     }
 
-    h2 {
-      font-size: 1.2rem;
-      font-weight: normal;
-      color: var(--text-muted);
-      margin-bottom: 2rem;
-    }
-
-    .social-icons a {
-      margin: 0 0.5rem;
-      display: inline-block;
-      color: var(--verge-blue);
-      font-size: 1.4rem;
-      text-decoration: none;
-      position: relative;
-    }
-
-    .social-icons a::after {
-      content: '';
-      position: absolute;
+    .overlay {
+      position: fixed;
+      top: 0;
       left: 0;
-      bottom: -4px;
       width: 100%;
-      height: 2px;
-      background-color: var(--verge-blue);
-      transform: scaleX(0);
-      transition: transform 0.3s ease;
-      transform-origin: right;
+      height: 100%;
+      background-color: #0a0a0a;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
     }
 
-    .social-icons a:hover::after {
-      transform: scaleX(1);
-      transform-origin: left;
+    .terminal {
+      background-color: #111;
+      border: 1px solid #39ff14;
+      padding: 2rem;
+      width: 90%;
+      max-width: 900px;
+      max-height: 90vh;
+      overflow: hidden;
+      color: #39ff14;
+      font-size: 1.2rem;
+      box-shadow: 0 0 10px #39ff14;
     }
 
-    p {
-      font-size: 1rem;
-      line-height: 1.5;
-      color: var(--text-muted);
+    .close-btn {
+      color: #ff3c3c;
+      font-size: 2rem;
+      position: absolute;
+      top: 1rem;
+      right: 2rem;
+      cursor: pointer;
     }
 
-    .project-links {
-      margin-top: 2rem;
+    .typewriter-line {
+      display: block;
+      white-space: pre;
+      border-right: 2px solid #39ff14;
+      animation: blink-caret 0.8s step-end infinite;
     }
 
-    .project-links a {
-      display: inline-block;
-      margin: 0.5rem 1rem;
-      padding: 0.6rem 1.2rem;
-      border: 2px solid var(--verge-pink);
-      border-radius: 25px;
-      text-decoration: none;
-      font-weight: bold;
-      color: var(--verge-pink);
-      transition: background-color 0.3s, color 0.3s;
+    @keyframes blink-caret {
+      from, to { border-color: transparent; }
+      50% { border-color: #39ff14; }
     }
 
-    .project-links a:hover {
-      background-color: var(--verge-pink);
-      color: #000;
+    ::-webkit-scrollbar {
+      width: 0;
+      background: transparent;
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <h1>KOTALA KISHAN REDDY</h1>
-    <h2>Prompt Engineer • AI Enthusiast • Automation Builder</h2>
+  <div class="intro" onclick="openTerminal()">
+    A Curious Case Study about: ME
+  </div>
 
-    <p>
-      Building tools and solutions with GPT-4, Python and automation platforms. <br>
-      Exploring AI's limits—prompt by prompt.
-    </p>
-
-    <div class="social-icons">
-      <a href="https://github.com/KotalaKishanReddy9" target="_blank">GitHub</a>
-      <a href="mailto:kotalakishanreddy@gmail.com">Email</a>
-      <a href="https://linkedin.com/in/yourprofile" target="_blank">LinkedIn</a>
-    </div>
-
-    <div class="project-links">
-      <a href="#">Portfolio</a>
-      <a href="#">Automation Tools</a>
+  <div class="overlay" id="overlay">
+    <div class="close-btn" onclick="closeTerminal()">&times;</div>
+    <div class="terminal" id="terminal">
+      <!-- Lines will be typed here dynamically -->
     </div>
   </div>
+
+  <script>
+    const lines = [
+      '> initializing kernel...',
+      '',
+      'USER: John Doe',
+      'ROLE: Prompt Engineer & Python Automation Developer',
+      '',
+      '>> help',
+      'Available commands:',
+      '- about',
+      '- projects',
+      '- certificates',
+      '- github',
+      '- linkedin',
+      '',
+      '>> about',
+      'Expert in building intelligent workflows, AI prompting systems, and automating repetitive tasks with Python.',
+      '',
+      '>> projects',
+      '1. AI-Powered Telegram Bot',
+      '2. Smart YouTube Comment Scraper',
+      '3. Selenium Workflow Runner',
+      '4. GPT-Prompt Template Generator',
+      '',
+      '>> certificates',
+      '✔ Prompt Engineering (DeepLearning.AI)',
+      '✔ Python Automation (Coursera)',
+      '✔ Git & GitHub (freeCodeCamp)',
+      '',
+      '>> github',
+      '🔗 https://github.com/johndoe',
+      '',
+      '>> linkedin',
+      '🔗 https://linkedin.com/in/johndoe'
+    ];
+
+    function openTerminal() {
+      document.getElementById('overlay').style.display = 'flex';
+      const terminal = document.getElementById('terminal');
+      terminal.innerHTML = ''; // Clear previous output
+
+      let i = 0;
+      function typeLine() {
+        if (i < lines.length) {
+          const lineElem = document.createElement('div');
+          lineElem.className = 'typewriter-line';
+          terminal.appendChild(lineElem);
+          let j = 0;
+          const line = lines[i];
+
+          function typeChar() {
+            if (j <= line.length) {
+              lineElem.textContent = line.substring(0, j);
+              j++;
+              setTimeout(typeChar, 20);
+            } else {
+              i++;
+              setTimeout(typeLine, 150);
+            }
+          }
+
+          typeChar();
+        }
+      }
+
+      typeLine();
+    }
+
+    function closeTerminal() {
+      document.getElementById('overlay').style.display = 'none';
+    }
+  </script>
 </body>
 </html>
